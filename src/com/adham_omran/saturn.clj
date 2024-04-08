@@ -1,4 +1,4 @@
-(ns adham-omran.saturn
+(ns com.adham-omran.saturn
   (:gen-class))
 
 (defn greet
