@@ -1,5 +1,11 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :deps {org.clojure/clojure   {:mvn/version "1.11.1"}
+        org.clojure/data.json {:mvn/version "2.5.0"}
+        hiccup/hiccup         {:mvn/version "2.0.0-RC2"}
+        ring/ring             {:mvn/version "1.10.0"}
+        metosin/reitit        {:mvn/version "0.7.0-alpha7"}
+        cheshire/cheshire     {:mvn/version "5.12.0"}
+        org.scicloj/noj       {:mvn/version "1-alpha31"}}
  :aliases
  {:run-m {:main-opts ["-m" "adham-omran.saturn"]}
   :run-x {:ns-default adham-omran.saturn
