@@ -27,3 +27,5 @@
 /classes
 /target
 /tailwindcss-linux-x64
+/.clj-kondo/
+/.direnv/
