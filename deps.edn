@@ -5,9 +5,15 @@
         ring/ring             {:mvn/version "1.10.0"}
         metosin/reitit        {:mvn/version "0.7.0-alpha7"}
         cheshire/cheshire     {:mvn/version "5.12.0"}
-        org.scicloj/noj       {:mvn/version "1-alpha31"}}
+        org.scicloj/noj       {:mvn/version "1-alpha34"}}
  :aliases
- {:run-m {:main-opts ["-m" "adham-omran.saturn"]}
+ {:dev {:extra-deps {nrepl/nrepl                   {:mvn/version "1.1.0"}
+                     refactor-nrepl/refactor-nrepl {:mvn/version "3.10.0"}
+                     cider/cider-nrepl             {:mvn/version "0.47.0"}
+                     criterium/criterium           {:mvn/version "0.4.6"}}
+        :main-opts ["-m" "nrepl.cmdline" "--port" "9999"
+                    "--middleware" "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"]}
+  :run-m {:main-opts ["-m" "adham-omran.saturn"]}
   :run-x {:ns-default adham-omran.saturn
           :exec-fn greet
           :exec-args {:name "Clojure"}}
