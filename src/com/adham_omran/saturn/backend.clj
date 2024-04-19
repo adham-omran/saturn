@@ -38,39 +38,6 @@
                                                            [:p
                                                             {:color "red"}
                                                             "Error."]))]]))}))}}]
-      #_["/input" {:post
-                   {:handler
-                    (fn [{{:strs [q]} :form-params}]
-                      (let [pre-eval (-> q
-                                         read-string)]
-                        (pprint/pprint pre-eval)
-                        (if (:chart pre-eval)
-                          {:body
-                           (-> [:script
-                                (h/raw (format "vegaEmbed(document.currentScript.parentElement,%s).catch(console.error); "
-                                               (json/generate-string
-                                                {"data" {"values" [{"category" "A", "group" "x", "value" (get-in pre-eval [:v :A])}
-                                                                   {"category" "B", "group" "z", "value" 1.1}
-                                                                   {"category" "C", "group" "z", "value" 0.2}]}
-
-                                                 "mark" "bar",
-                                                 "encoding" {"x" {"field" "category"},
-                                                             "y" {"field" "value", "type" "quantitative"},
-                                                             "xOffset" {"field" "group"},
-                                                             "color" {"field" "group"}}})))]
-                               h/html
-                               str)}
-                          {:body (str (h/html [:div [:p
-                                                     (try
-                                                       (binding [*ns* (create-ns 'com.adham-omran.saturn.env)]
-                                                         (-> q
-                                                             read-string
-                                                             eval
-                                                             h/raw))
-                                                       (catch RuntimeException _
-                                                         [:p
-                                                          {:color "red"}
-                                                          "Error."]))]]))})))}}]
       ["/next-cell" {:get {:handler
                            (fn [_]
                              {:body (str (h/html
